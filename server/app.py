@@ -86,7 +86,7 @@ class Customers(Resource):
             return make_response({
                 "errors": [errors.__str__()]
             }, 422)
-        return make_response(user.to_dict(), 201)
+        return make_response(customer.to_dict(), 201)
 
 api.add_resource(Customers,'/customers')
 
