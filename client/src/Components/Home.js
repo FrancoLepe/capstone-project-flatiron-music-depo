@@ -1,14 +1,24 @@
-// import React from 'react'
-// import ProductList from './ProductList'
-// import './Home.css'
+import React from 'react'
+import logo from '../images/transparent-guitar-depo-logo copy-2.png';
+import ProductList from './ProductList';
 
-// function Home() {
-//     return(
-//         <div >
-//             <h1>Welcome to Music DEPO!</h1>
-//             <ProductList />
-//         </div>
-//     )
-// }
+function Home({products}) {
+    return(
+    <div>
 
-// export default Home 
+        <img src={logo} alt="music depo logo" />
+        <p>WELCOME TO MUSIC DEPO!</p>
+            <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+             >
+              Learn React
+            </a>
+            <ProductList products={products}/>
+    </div>    
+    )
+}
+
+export default Home 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Home from './components/Home';
+import Cart from './components/Cart';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import { Account } from "./components/Account";
+import { Routes, Route } from "react-router-dom";
+import Account from "./components/Account";
 import './App.css';
 import API_URL from "./apiConfig.js";
-import logo from '/Users/francolepe/capstone-project-flatiron-music-depo/client/src/images/transparent-guitar-depo-logo copy-2.png';
 import Login from './components/Login';
 
 function App() {
@@ -28,18 +28,14 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-       <nav>
-         <img src={logo} alt="music depo logo" />
-          <p>WELCOME TO MUSIC DEPO!</p>
-              <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-               >
-                Learn React
-              </a>
-      </nav>
+       
+             
+                <Routes>
+                <Route path="/cart" element={<Cart />}/>
+                <Route path="/account" element={<Account />}/>
+                <Route path="/" element={<Home products={products} />}/>
+                </Routes>
+             
     </div>
   );
 }

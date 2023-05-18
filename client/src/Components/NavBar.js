@@ -10,6 +10,7 @@ export default function Navbar(){
             <li>
                 <a href="/cart">Cart</a>
             </li>
+            
         </ul>
     </nav>
 }
