@@ -123,7 +123,7 @@ class CustomerById(Resource):
             return make_response({'error': 'customer not found'}, 404)
         try:
             for attr in data:
-                setattr(user, attr, data[attr])
+                setattr(customer, attr, data[attr])
             db.session.add(customer)
             db.session.commit()
         except Exception as ex:
