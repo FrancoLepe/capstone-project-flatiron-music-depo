@@ -21,12 +21,11 @@ class Product(db.Model, SerializerMixin):
     image = db.Column(db.String)
     description = db.Column(db.String)
 
-    
-    #checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id')) 
 
     checkout_carts=db.relationship("CheckoutCart", backref= 'product', cascade= 'all, delete, delete-orphan')
     customers= association_proxy('checkout_carts', 'customer')
 
+    customer_products=db.relationship("CustomerProduct", backref='product', cascade='all, delete, delete-orphan')
 
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
@@ -44,14 +43,12 @@ class Customer(db.Model, SerializerMixin):
     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
 
 
-    # purchase_histories_id=db.Column(db.Integer, db.ForeignKey('purchase_histories.id'))
-    #checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id'))
-
     checkout_carts = db.relationship("CheckoutCart", backref='customer', cascade='all, delete, delete-orphan')
     products= association_proxy('checkout_carts','product')
 
-    # purchase_histories = db.relationship("PurchaseHistory", backref='customer', cascade='all, delete, delete-orphan')
-    # checkout_carts= association_proxy('purchase_histories','checkout_cart')
+    customer_products=db.relationship("CustomerProduct", backref='customer', cascade='all, delete, delete-orphan')
+
+
 
     @validates('firstname', 'lastname','address','phone','password')
     def validate_nullable(self, key,value):
@@ -78,14 +75,20 @@ class CheckoutCart(db.Model, SerializerMixin):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
 
-    # purchase_histories = db.relationship("PurchaseHistory", backref='checkout_carts', cascade='all, delete, delete-orphan')
-    # customers= association_proxy('purchase_histories','customer')
+class CustomerProduct(db.Model, SerializerMixin):
+    __tablename__='customer_products'
+    
+    id=db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
 
-# class PurchaseHistory(db.Model, SerializerMixin):
-#     __tablename__ = 'purchase_histories'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id'))
-#     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+class PurchaseHistory(db.Model, SerializerMixin):
+    __tablename__ = 'purchase_histories'
+
+    id = db.Column(db.Integer, primary_key=True)
+    purchase_date=db.Column(db.DateTime, server_default= db.func.now())
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
 
     

@@ -5,8 +5,8 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
-from models import db, Product, Customer, CheckoutCart
-#, PurchaseHistory
+from models import db, Product, Customer, CheckoutCart, PurchaseHistory
+# from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 
 app = Flask(__name__)
@@ -22,12 +22,34 @@ migrate = Migrate(app, db)
 CORS(app)
 api = Api(app)
 
+# jwt = JWTManager(app)
 
+
+# @app.route('/customerlogin', methods=['POST'])
+# def CustomerLogin():
+#   email = request.json.get('email')
+#   password = request.json.get('password')
+#   customer = Customer.query.filter_by(email=email).first()
+#   if not customer not customer.check_password(password):
+#     return make_response(
+#       {"error": "Invalid email or password"},
+#       401,
+#       {"Content-Type": "application/json"}
+#     )
+#   token = create_access_token(identity=customer.id)
+#   response = make_response(
+#   {"token": token},
+#   200,
+#   {"Content-Type": "application/json"}
+#   )
+#   # Set the cookie with an expiration time of 24 hours
+#   expires = datetime.now() + timedelta(days=1)
+#   response.set_cookie("token", token, expires=expires)
+#   return response
 
 @app.route('/')
 def index():
     return '<h1>Music DEPO API is running!</h1>'
-
 
 
 
