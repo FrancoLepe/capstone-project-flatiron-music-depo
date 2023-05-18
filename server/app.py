@@ -14,7 +14,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 db.init_app(app)
-# Use this to create your tables
+
+
 with app.app_context():
     db.create_all()
 migrate = Migrate(app, db)
@@ -73,12 +74,12 @@ class Customers(Resource):
         data = request.get_json()
         try:
             customer = Customer(
-                firstname=data["fname"],
-                lastname=data["lname"],
+                firstname=data["firstname"],
+                lastname=data["lastname"],
                 email=data["email"],
                 phone=data["phone"],
-                addres="1234 happy street",
-                password=data["password"],
+                address="1234 happy street",
+                password="password",
             )
             db.session.add(customer)
             db.session.commit()
