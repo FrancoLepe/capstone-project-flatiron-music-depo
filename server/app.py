@@ -108,7 +108,7 @@ class CustomerById(Resource):
 
     def delete(self, id):
         customer = Customer.query.filter_by(id=id).first()
-        if not user:
+        if not customer:
             return make_response({'error': 'user not found'}, 404)
         db.session.delete(customer)
         db.session.commit()
@@ -120,7 +120,7 @@ class CustomerById(Resource):
         data = request.get_json()
         customer = Customer.query.filter_by(id=id).first()
         if not customer:
-            return make_response({'error': 'user not found'}, 404)
+            return make_response({'error': 'customer not found'}, 404)
         try:
             for attr in data:
                 setattr(user, attr, data[attr])
