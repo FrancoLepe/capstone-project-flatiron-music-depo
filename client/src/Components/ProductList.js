@@ -6,7 +6,7 @@ import ProductCard from './ProductCard.js'
 function ProductList({products}) {
 
     const productCardsArray = products.map(productObj => {
-        return <ProductCard product={productObj}/>
+        return <ProductCard key={productObj.id} product={productObj}/>
     })
 
 

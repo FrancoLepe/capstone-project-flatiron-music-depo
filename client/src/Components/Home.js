@@ -7,15 +7,8 @@ function Home({products}) {
     <div>
 
         <img src={logo} alt="music depo logo" />
-        <p>WELCOME TO MUSIC DEPO!</p>
-            <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-             >
-              Learn React
-            </a>
+        <h1>WELCOME TO MUSIC DEPO!</h1>
+           
             <ProductList products={products}/>
     </div>    
     )

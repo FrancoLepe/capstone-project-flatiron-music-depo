@@ -1,23 +1,81 @@
 import React, { useState } from "react"
+import {  useNavigate } from "react-router-dom";
 
-function Login(){
+
+function Login({handleLogin}){
 
     const [email, setEmail]=useState('');
     const [password, setPassword]=  useState('');
+    const handleEmail = e => setEmail(e.target.value)
+    const handlePassword = e => setPassword(e.target.value)
+    const [formErrors, setFormErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    function handleLoginResult(customer) {
+        if (customer.hasOwnProperty('id')) {
+            handleLogin(customer);
+            navigate("/")
+        }
+    }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     console.log(email)
+    // }
+    function handleLoginResult(customer) {
+        if (customer.hasOwnProperty('id')) {
+            handleLogin(customer);
+            navigate("/")
+        }
+    }
+
+    function handleLoginSubmit(e) {
+        e.preventDefault();
+        setIsLoading(true);
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(email)
+        try {
+            const requestOptions = {
+                method: 'POST',
+                credentials: "include",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            };
+            fetch('http://localhost:5555/login', requestOptions)
+                .then((r) => {
+                    setIsLoading(false);
+
+                    if (r.ok) {
+                        r.json().then((customer) => {
+                            handleLoginResult(customer);
+                            
+                        })
+                    } else {
+                        r.json().then((err) => {
+                            setFormErrors(err.error)
+                        });
+                    }
+                })
+            
+            
+        } catch (err) {
+            setFormErrors(err.error);
+        }
+
+
     }
 
     return ( 
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLoginSubmit}>
                 <label htmlFor ="email">Email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type = "email" placeholder="email" id ="email" name="email"></input>
+                <input value={email} onChange={handleEmail} type = "email" placeholder="email" id ="email" name="email"></input>
                 <label htmlFor ="password">Password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type = "password" placeholder="***********" id ="password" name="password"></input>
+                <input value={password} onChange={handlePassword} type = "password" placeholder="***********" id ="password" name="password"></input>
                 <button type="submit">Log In</button>
             
             <div>  

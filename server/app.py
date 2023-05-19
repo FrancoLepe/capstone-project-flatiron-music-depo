@@ -1,5 +1,5 @@
 
-
+import os
 from flask import Flask, request, make_response, jsonify, session
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -14,12 +14,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 db.init_app(app)
+app.secret_key =b'\xbbU\x0fL}c\xb0\x06\x1d\x96\xc8@\xa8\x14\x02\xcd\xc0\x17\xb5a5\xd4h\xee'
 
 
 with app.app_context():
     db.create_all()
 migrate = Migrate(app, db)
-CORS(app)
+CORS(app, supports_credentials=True)
 api = Api(app)
 
 # jwt = JWTManager(app)
@@ -219,7 +220,7 @@ api.add_resource(Logout, '/logout')
 class CheckSession(Resource):
     def get(self):
         customer = Customer.query.filter(Customer.id == session.get('customer_id')).first()
-        if user:
+        if customer:
             return customer.to_dict()
         else:
             return {'message': '401: Not Authorized'}, 401

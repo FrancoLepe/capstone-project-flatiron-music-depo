@@ -1,9 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../images/transparent-guitar-depo-logo copy-2.png';
+import { useNavigate } from "react-router-dom";
 
-function Navbar(){
+function Navbar({currentCustomer}){
+
+    const navigate = useNavigate();
+
     return <nav className="nav">
-        <Link to="/" className="site-title">Home</Link>
+       
+        <Link to='/' className="navbarLogo">
+            <img src={logo} width={200} height={100} alt='music depo logo' /> 
+        </Link>
+        <div >{!currentCustomer ? 
+                <button type="button" onClick={() => navigate("/login")}>Login</button> :
+                    <p >Welcome, {currentCustomer.firstname} {currentCustomer.lastname}!</p>
+                        }</div>
+
         <ul>
             <li>
                 <Link to="/account">Account</Link>
