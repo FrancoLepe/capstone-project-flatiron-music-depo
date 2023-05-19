@@ -14,7 +14,7 @@ with app.app_context():
     Product.query.delete()
 
 ##### CUSTOMERS#####
-
+    franco = Customer(firstname='Franco',lastname="Lepe", email="clearviewworldseo@gmail.com",phone=4444444444,address='123 main street',password="password")
     for i in range(5):
         customer = Customer(
             firstname = faker.first_name(),
@@ -24,7 +24,8 @@ with app.app_context():
             address = '1234 happy street',
             password='password'
         )
-
+    
+        db.session.add(franco)
         db.session.add(customer)
         db.session.commit()
     #     x.append(customer)

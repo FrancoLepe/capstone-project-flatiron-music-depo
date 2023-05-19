@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar currentCustomer={currentCustomer}/>
        
        
        
@@ -72,7 +72,7 @@ function App() {
                 <Route path="/account" element={<Account currentCustomer={currentCustomer} onLogout={handleLogout} />}/>
                 <Route path="/" element={<Home products={products} />}/>
                 <Route path="/login" element={<Login handleLogin={handleLogin}/>}/>
-                <Route path="/createaccount" element={<CreateAccount/>}/>
+                <Route path="/createaccount" element={<CreateAccount currentCustomer={currentCustomer} setCurrentCustomer={setCurrentCustomer}/>}/>
                 </Routes>
              
     </div>

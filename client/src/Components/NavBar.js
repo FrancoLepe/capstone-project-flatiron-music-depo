@@ -13,7 +13,8 @@ function Navbar({currentCustomer}){
             <img src={logo} width={200} height={100} alt='music depo logo' /> 
         </Link>
         <div >{!currentCustomer ? 
-                <button type="button" onClick={() => navigate("/login")}>Login</button> :
+                // <button type="button" onClick={() => navigate("/login")}>Login</button> 
+                <p className="navbarMessage">please create account or login to purchase gear!</p>:
                     <p >Welcome, {currentCustomer.firstname} {currentCustomer.lastname}!</p>
                         }</div>
 
