@@ -13,7 +13,7 @@ function ProductCard({product}) {
         {product.name}
         {product.brand}
         {product.description}
-        {product.price}
+        ${product.price}
         <img src={product.image} alt={product.name}/>
 
     </div>
