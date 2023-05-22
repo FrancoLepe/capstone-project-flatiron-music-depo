@@ -3,11 +3,39 @@ import React from 'react';
 
 
 
-function ProductCard({product}) {
+function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
 
-    // const productCardsArray = products.map(productObj => {
-    //     return <ProductCard product={productObj}/>
-    // })
+ 
+        function handleAddToCart() {
+        const requestCheckout = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+               customer_id: currentCustomer.id,
+               product_id: product.id,
+            })
+        };
+        fetch('http://127.0.0.1:5555/create_cart', requestCheckout)
+            .then(r => r.json())
+            .then(r => {
+                addToCart(r)
+            })
+    }
+
+    function handleRemoveFromCart() {
+      let deleteId = product.checkout_id
+      const removeItem = {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+      }
+      fetch(`http://127.0.0.1:5555/create_cart/${deleteId}`, removeItem)
+          .then(checkInProduct(product))
+  }
+
+  
+
+
+  
   return(
     <div>
       <br />
@@ -15,7 +43,8 @@ function ProductCard({product}) {
         <div><b>Brand</b>{product.brand}/</div>
         <div><b>description</b>{product.description}</div>
         <div><b>price</b> ${product.price}</div>
-        
+        <div><button  onClick={handleAddToCart} >add to cart</button></div>
+        <div><button onClick={handleRemoveFromCart} >remove item</button></div>
         <img src={product.image} alt={product.name}/>
       <br />
     </div>

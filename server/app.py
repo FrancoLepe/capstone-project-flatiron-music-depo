@@ -77,6 +77,10 @@ class ProductById(Resource):
             {"Content-Type": "application/json"}
         )
         return response
+    # def delete(self,id):
+    #     product= Product.query.filter_by(id = id).first()
+    #     db.session.delete(product)
+    #     db.session.commit()
 
 api.add_resource(ProductById, '/products/<int:id>')
 
@@ -227,6 +231,35 @@ class CheckSession(Resource):
 
 
 api.add_resource(CheckSession, '/check_session')
+
+
+class CheckoutCarts(Resource):
+    def get(self):
+        checkout_cart_list= [checkout_cart.to_dict() for checkout_cart in CheckoutCart.query.all()]
+        return checkout_cart_list
+
+api.add_resource(CheckoutCarts,'/checkoutcarts')
+       
+        
+
+
+
+class CheckoutCartByID(Resource):
+    def get(self, id):
+        checkout_cart = CheckoutCart.query.filter_by(id=id).first()
+        if not checkout_cart:
+            return make_response({'error': "not found"},404)
+        return make_response( checkout_cart.to_dict(),200)
+
+
+    def delete(self,id):
+    
+        cart_item= CheckoutCart.query.filter_by(id = id).first()
+        db.session.delete(cart_item)
+        db.session.commit()
+
+api.add_resource(CheckoutCartByID, '/checkoutcartsbyid/<int:id>')
+
 
 
 

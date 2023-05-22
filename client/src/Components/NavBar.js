@@ -14,7 +14,7 @@ function Navbar({currentCustomer}){
         </Link>
         <div >{!currentCustomer ? 
                 // <button type="button" onClick={() => navigate("/login")}>Login</button> 
-                <p className="navbarMessage">please create account or login to purchase gear!</p>:
+                <p className="navbarMessage">please login or create account to purchase gear!</p>:
                     <p >Welcome, {currentCustomer.firstname} {currentCustomer.lastname}!</p>
                         }</div>
 

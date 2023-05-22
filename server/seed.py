@@ -28,8 +28,7 @@ with app.app_context():
         db.session.add(franco)
         db.session.add(customer)
         db.session.commit()
-    #     x.append(customer)
-    # return x
+   
 
 ######products####
     product1= Product(name='Les Paul', brand='Gibson', price=2799.99, description='Les Paul Standard 60s neck, Gold Top.',image='https://images.squarespace-cdn.com/content/v1/54132a28e4b030d3be2f32eb/1670269168382-VWBIIB1GCMF92UGM9IT5/836218D1-F30D-49DD-8919-AEAF0E2A744B.jpeg?format=1000w')

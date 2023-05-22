@@ -12,7 +12,7 @@ db = SQLAlchemy()
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'products'
 
-    serialize_rules = ('-id','-checkout_carts',)
+    serialize_rules = ('-checkout_carts',)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)

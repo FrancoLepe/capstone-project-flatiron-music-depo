@@ -3,12 +3,15 @@ import ProductCard from './ProductCard.js'
 
 
 
-function ProductList({products}) {
+function ProductList({products, currentCustomer, addToCart,checkInProduct}) {
 
     const productCardsArray = products.map(productObj => {
-        return <ProductCard key={productObj.id} product={productObj}/>
+        // console.log(productObj)
+        return <ProductCard key={productObj.id} product={productObj} currentCustomer={currentCustomer} addToCart={addToCart} checkInProduct={checkInProduct}
+        />
     })
 
+// console.log(currentCustomer)
 
     return (
         <div>
@@ -20,5 +23,6 @@ function ProductList({products}) {
         </div>
     )
 }
+
 
 export default ProductList;

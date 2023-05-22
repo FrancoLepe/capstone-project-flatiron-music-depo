@@ -8,11 +8,11 @@ function CreateAccount({currentCustomer, setCurrentCustomer}){
     const navigate = useNavigate();
 
     const [email, setEmail]=useState('');
-    const [password, setPassword]=  useState('');
-    const [firstname, setFirstName]=useState('');
-    const [lastname, setLastName]=  useState('');
-    const [address, setAddress]=  useState('');
-    const [phone, setPhone]=  useState('');
+    // const [password, setPassword]=  useState('');
+    // const [firstname, setFirstName]=useState('');
+    // const [lastname, setLastName]=  useState('');
+    // const [address, setAddress]=  useState('');
+    // const [phone, setPhone]=  useState('');
     
 
 
