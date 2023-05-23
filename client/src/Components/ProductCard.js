@@ -23,17 +23,17 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
     }
 
     function handleRemoveFromCart() {
-      let deleteId = product.checkout_id
+      
       const removeItem = {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
       }
-      fetch(`http://127.0.0.1:5555/create_cart/${deleteId}`, removeItem)
+      fetch(`http://127.0.0.1:5555/checkoutcartsbyid/${product.id}`, removeItem)
           .then(checkInProduct(product))
   }
 
   
-
+ console.log(product)
 
   
   return(

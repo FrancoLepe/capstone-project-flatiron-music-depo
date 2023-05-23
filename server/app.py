@@ -23,30 +23,7 @@ migrate = Migrate(app, db)
 CORS(app, supports_credentials=True)
 api = Api(app)
 
-# jwt = JWTManager(app)
 
-
-# @app.route('/customerlogin', methods=['POST'])
-# def CustomerLogin():
-#   email = request.json.get('email')
-#   password = request.json.get('password')
-#   customer = Customer.query.filter_by(email=email).first()
-#   if not customer not customer.check_password(password):
-#     return make_response(
-#       {"error": "Invalid email or password"},
-#       401,
-#       {"Content-Type": "application/json"}
-#     )
-#   token = create_access_token(identity=customer.id)
-#   response = make_response(
-#   {"token": token},
-#   200,
-#   {"Content-Type": "application/json"}
-#   )
-#   # Set the cookie with an expiration time of 24 hours
-#   expires = datetime.now() + timedelta(days=1)
-#   response.set_cookie("token", token, expires=expires)
-#   return response
 
 @app.route('/')
 def index():
@@ -83,6 +60,7 @@ class ProductById(Resource):
     #     db.session.commit()
 
 api.add_resource(ProductById, '/products/<int:id>')
+
 
 
 
@@ -211,7 +189,7 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
-        session['user_id'] = None
+        session['customer_id'] = None
 
         
         return {'message': '204: No Content'}, 204
@@ -257,6 +235,8 @@ class CheckoutCartByID(Resource):
         cart_item= CheckoutCart.query.filter_by(id = id).first()
         db.session.delete(cart_item)
         db.session.commit()
+
+        return make_response({},200)
 
 api.add_resource(CheckoutCartByID, '/checkoutcartsbyid/<int:id>')
 

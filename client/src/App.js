@@ -93,7 +93,7 @@ function addToCart(product) {
 
 
 function checkInProduct(product) {
-  const updatedproducts = product.map(productObj => {
+  const updatedproducts = products.map(productObj => {
     if ((productObj.id) === (product.id)) {
       productObj.checkout_cart = false;
       productObj.product_id = null;
@@ -107,6 +107,7 @@ function checkInProduct(product) {
   setProducts(updatedproducts);
 }
  console.log(currentCustomer)
+ 
 
 
 
