@@ -62,8 +62,8 @@ with app.app_context():
         
     #######purchase history
 
-    test1 =PurchaseHistory(product_id=1,customer_id=1)
-    db.session.add(test1)
-    db.session.commit()
+    # test1 =PurchaseHistory(product_id=1,customer_id=1)
+    # db.session.add(test1)
+    # db.session.commit()
 
   

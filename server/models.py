@@ -9,35 +9,105 @@ from sqlalchemy_serializer import SerializerMixin
   
 db = SQLAlchemy()
 
-class Product(db.Model, SerializerMixin):
-    __tablename__ = 'products'
+# class Product(db.Model, SerializerMixin):
+#     __tablename__ = 'products'
 
-    # serialize_rules = ('-checkout_cart',)
-    serialize_rules = (
-        '-checkout_cart',
-        '-checkout_cart_product.checkout_cart',
-        '-checkout_cart_product.checkout_cart.checkout_cart_product',
-    )
+#     # serialize_rules = ('-checkout_cart',)
+#     serialize_rules = (
+#         '-checkout_cart',
+#         '-checkout_cart_product.checkout_cart',
+#         '-checkout_cart_product.checkout_cart.checkout_cart_product',
+#     )
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    brand = db.Column(db.String)
-    price = db.Column(db.Float)
-    image = db.Column(db.String)
-    description = db.Column(db.String)
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     brand = db.Column(db.String)
+#     price = db.Column(db.Float)
+#     image = db.Column(db.String)
+#     description = db.Column(db.String)
     
     
-    checkout_cart_id=db.Column(db.Integer, db.ForeignKey('checkout_carts.id'))
+#     checkout_cart_id=db.Column(db.Integer, db.ForeignKey('checkout_carts.id'))
 
-    checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='product', cascade='all, delete, delete-orphan' )
-    checkout_cart=association_proxy('checkout_cart_product', 'checkout_cart')
+#     checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='product', cascade='all, delete, delete-orphan' )
+#     checkout_cart=association_proxy('checkout_cart_product', 'checkout_cart')
 
     
+
+# class Customer(db.Model, SerializerMixin):
+#     __tablename__ = 'customers'
+
+#     serialize_rules = ( '-password',"-created_at", "-updated_at",'-checkout_cart','-products')
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     firstname = db.Column(db.String, nullable = False)
+#     lastname = db.Column(db.String, nullable = False)
+#     address = db.Column(db.String, nullable = False)
+#     phone = db.Column(db.Integer, nullable = False)
+#     email = db.Column(db.Integer, nullable = False, unique = True)
+#     password = db.Column(db.String, nullable= False)
+#     created_at=db.Column(db.DateTime, server_default=db.func.now())
+#     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
+    
+#     checkout_cart=db.relationship("CheckoutCart", uselist=False, backref='customer')
+#     # products=db.relationship('Product', backref="customer",cascade='all, delete, delete-orphan' )
+   
+   
+
+
+#     @validates('firstname', 'lastname','address','phone','password')
+#     def validate_nullable(self, key,value):
+#         if not value:
+#             raise ValueError(f'{key} is required')
+#         return value
+
+#     @validates('email')
+#     def validate_email(self, key, value):
+#         emails = Customer.query.all()
+#         if value in  emails:
+#             raise ValueError('email already exists')
+#         if not value:
+#             raise ValueError('email is required')
+#         return value
+
+# class CheckoutCart(db.Model, SerializerMixin):
+#     __tablename__ = 'checkout_carts'
+
+#     # serialize_rules = ( '-customer_id', '-checkout_date')
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     checkout_date=db.Column(db.DateTime, server_default= db.func.now())
+#     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+
+#     checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='checkout_cart', cascade='all, delete, delete-orphan' )
+#     products=association_proxy('checkout_cart_product', 'product')
+
+# class CheckoutCartProduct(db.Model, SerializerMixin):
+#     __tablename__='checkout_cart_products'
+    
+#     id=db.Column(db.Integer, primary_key=True)
+#     product_id = db.Column(db.Integer, db.ForeignKey('products.id'),primary_key=True)
+#     customer_id=db.Column(db.Integer, db.ForeignKey('customers.id'))
+#     checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id'),primary_key=True)
+
+
+# class PurchaseHistory(db.Model, SerializerMixin):
+#     __tablename__ = 'purchase_histories'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     purchase_date=db.Column(db.DateTime, server_default= db.func.now())
+#     product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
+#     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+
+
+cart_products = db.Table(
+    'cart_products',
+    db.Column('cart_id', db.Integer, db.ForeignKey('checkout_carts.id'), primary_key=True),
+    db.Column('product_id', db.Integer, db.ForeignKey('products.id'), primary_key=True)
+)
 
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
-
-    serialize_rules = ( '-password',"-created_at", "-updated_at",'-checkout_cart','-products')
 
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String, nullable = False)
@@ -48,53 +118,26 @@ class Customer(db.Model, SerializerMixin):
     password = db.Column(db.String, nullable= False)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
-    
-    checkout_cart=db.relationship("CheckoutCart", uselist=False, backref='customer')
-    # products=db.relationship('Product', backref="customer",cascade='all, delete, delete-orphan' )
-   
-   
+    checkout_carts = db.relationship('CheckoutCart', backref='customer')
+    purchase_history = db.relationship('PurchaseHistory', backref='customer')
 
-
-    @validates('firstname', 'lastname','address','phone','password')
-    def validate_nullable(self, key,value):
-        if not value:
-            raise ValueError(f'{key} is required')
-        return value
-
-    @validates('email')
-    def validate_email(self, key, value):
-        emails = Customer.query.all()
-        if value in  emails:
-            raise ValueError('email already exists')
-        if not value:
-            raise ValueError('email is required')
-        return value
+class Product(db.Model, SerializerMixin):
+    __tablename__ = 'products'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    brand= db.Column(db.String)
+    image = db.Column(db.String)
+    description=db.Column(db.String)
+    price = db.Column(db.Float)
+    carts = db.relationship('CheckoutCart', secondary=cart_products, backref='products')
 
 class CheckoutCart(db.Model, SerializerMixin):
     __tablename__ = 'checkout_carts'
-
-    # serialize_rules = ( '-customer_id', '-checkout_date')
-
     id = db.Column(db.Integer, primary_key=True)
-    checkout_date=db.Column(db.DateTime, server_default= db.func.now())
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-
-    checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='checkout_cart', cascade='all, delete, delete-orphan' )
-    products=association_proxy('checkout_cart_product', 'product')
-
-class CheckoutCartProduct(db.Model, SerializerMixin):
-    __tablename__='checkout_cart_products'
-    
-    id=db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'),primary_key=True)
-    customer_id=db.Column(db.Integer, db.ForeignKey('customers.id'))
-    checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id'),primary_key=True)
-
+    purchase_history_id = db.Column(db.Integer, db.ForeignKey('purchase_histories.id'))
 
 class PurchaseHistory(db.Model, SerializerMixin):
     __tablename__ = 'purchase_histories'
-
     id = db.Column(db.Integer, primary_key=True)
-    purchase_date=db.Column(db.DateTime, server_default= db.func.now())
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
