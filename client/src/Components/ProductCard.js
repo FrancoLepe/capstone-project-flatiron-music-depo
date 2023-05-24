@@ -5,14 +5,15 @@ import React from 'react';
 
 function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
 
- 
+
+
         function handleAddToCart() {
         const requestCheckout = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                customer_id: currentCustomer.id,
-               product_id: product.id,
+              //  product_id: product.id,
             })
         };
         fetch('http://127.0.0.1:5555/create_cart', requestCheckout)
@@ -21,6 +22,7 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
                 addToCart(r)
             })
     }
+
 
     function handleRemoveFromCart() {
       
@@ -43,6 +45,7 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
         <div><b>Brand</b>{product.brand}/</div>
         <div><b>description</b>{product.description}</div>
         <div><b>price</b> ${product.price}</div>
+        {/* <button onClick={() => addToCart(product)} >Add To Cart</button> */}
         <div><button  onClick={handleAddToCart} >add to cart</button></div>
         <div><button onClick={handleRemoveFromCart} >remove item</button></div>
         <img src={product.image} alt={product.name}/>
@@ -57,3 +60,24 @@ export default ProductCard
 
 
 //<div><b>Title:</b> {book.title}</div>
+
+    // function handleAddToCart(product) {
+    //   const requestCheckout = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       customer_id: currentCustomer.id,
+    //       product_id: product.id,
+    //     })
+    //   };
+    
+    //   fetch('http://127.0.0.1:5555/create_cart', requestCheckout)
+    //     .then(r => r.json())
+    //     .then(response => {
+    //       // Handle the response if needed
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.error('Error adding product to cart:', error);
+    //     });
+    // }

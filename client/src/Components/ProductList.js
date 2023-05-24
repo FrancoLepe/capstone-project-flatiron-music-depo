@@ -3,7 +3,7 @@ import ProductCard from './ProductCard.js'
 
 
 
-function ProductList({products, currentCustomer, addToCart,checkInProduct}) {
+function ProductList({products, currentCustomer, addToCart, checkInProduct}) {
 
     const productCardsArray = products.map(productObj => {
         // console.log(productObj)

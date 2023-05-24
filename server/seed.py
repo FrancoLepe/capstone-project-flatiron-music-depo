@@ -55,9 +55,9 @@ with app.app_context():
     
 ####checkoutcart
 
-    checkout_cart = CheckoutCart(product_id=1 , customer_id=2)
-    db.session.add(checkout_cart)
-    db.session.commit()
+    # checkout_cart = CheckoutCart(product_id=1 , customer_id=2)
+    # db.session.add(checkout_cart)
+    # db.session.commit()
 
         
     

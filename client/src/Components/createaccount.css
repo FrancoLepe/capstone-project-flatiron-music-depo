@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  text-align: center;
+}
+
+.content {
+  width: 330px;
+  padding: 40px 30px;
+  background: #f4ffff;
+  border-radius: 10px;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+}
+
+.content form {
+  margin-top: 20px;
+}
+
+.content label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.content input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background: #dde1e7;
+  margin-bottom: 10px;
+}
+
+.content button {
+  margin-top: 15px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #654ed7;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #090909;
+  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
+}
+
+.content button:focus {
+  color: #3498db;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
+}
+
+.content div {
+  margin-top: 10px;
+  color: #595959;
+  font-size: 16px;
+}
+
+.content div a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.content div a:hover {
+  text-decoration: underline;
+}
+
+.content div.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+  text-align: left;
+}

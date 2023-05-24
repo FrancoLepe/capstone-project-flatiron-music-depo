@@ -12,7 +12,12 @@ db = SQLAlchemy()
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'products'
 
-    serialize_rules = ('-checkout_carts',)
+    # serialize_rules = ('-checkout_cart',)
+    serialize_rules = (
+        '-checkout_cart',
+        '-checkout_cart_product.checkout_cart',
+        '-checkout_cart_product.checkout_cart.checkout_cart_product',
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -20,17 +25,19 @@ class Product(db.Model, SerializerMixin):
     price = db.Column(db.Float)
     image = db.Column(db.String)
     description = db.Column(db.String)
+    
+    
+    checkout_cart_id=db.Column(db.Integer, db.ForeignKey('checkout_carts.id'))
 
+    checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='product', cascade='all, delete, delete-orphan' )
+    checkout_cart=association_proxy('checkout_cart_product', 'checkout_cart')
 
-    checkout_carts=db.relationship("CheckoutCart", backref= 'product', cascade= 'all, delete, delete-orphan')
-    customers= association_proxy('checkout_carts', 'customer')
-
-    customer_products=db.relationship("CustomerProduct", backref='product', cascade='all, delete, delete-orphan')
+    
 
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
 
-    serialize_rules = ( '-password',"-created_at", "-updated_at",'-checkout_carts',)
+    serialize_rules = ( '-password',"-created_at", "-updated_at",'-checkout_cart','-products')
 
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String, nullable = False)
@@ -41,13 +48,11 @@ class Customer(db.Model, SerializerMixin):
     password = db.Column(db.String, nullable= False)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
-
-
-    checkout_carts = db.relationship("CheckoutCart", backref='customer', cascade='all, delete, delete-orphan')
-    products= association_proxy('checkout_carts','product')
-
-    customer_products=db.relationship("CustomerProduct", backref='customer', cascade='all, delete, delete-orphan')
-
+    
+    checkout_cart=db.relationship("CheckoutCart", uselist=False, backref='customer')
+    # products=db.relationship('Product', backref="customer",cascade='all, delete, delete-orphan' )
+   
+   
 
 
     @validates('firstname', 'lastname','address','phone','password')
@@ -72,15 +77,18 @@ class CheckoutCart(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     checkout_date=db.Column(db.DateTime, server_default= db.func.now())
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
 
-class CustomerProduct(db.Model, SerializerMixin):
-    __tablename__='customer_products'
+    checkout_cart_product = db.relationship('CheckoutCartProduct', backref ='checkout_cart', cascade='all, delete, delete-orphan' )
+    products=association_proxy('checkout_cart_product', 'product')
+
+class CheckoutCartProduct(db.Model, SerializerMixin):
+    __tablename__='checkout_cart_products'
     
     id=db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'),primary_key=True)
+    customer_id=db.Column(db.Integer, db.ForeignKey('customers.id'))
+    checkout_cart_id = db.Column(db.Integer, db.ForeignKey('checkout_carts.id'),primary_key=True)
 
 
 class PurchaseHistory(db.Model, SerializerMixin):
@@ -90,5 +98,3 @@ class PurchaseHistory(db.Model, SerializerMixin):
     purchase_date=db.Column(db.DateTime, server_default= db.func.now())
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-
-    

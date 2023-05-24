@@ -149,7 +149,7 @@ class CreateCart(Resource):
         try:
             new_cart = CheckoutCart(
                 customer_id=data['customer_id'],
-                product_id=data['product_id']
+                # product_id=data['product_id']
             )
             db.session.add(new_cart)
             db.session.commit()
@@ -159,7 +159,7 @@ class CreateCart(Resource):
             }, 422)        
         new_cart_dict = {
             "customer_id": new_cart.customer_id,
-            "product_id": new_cart.product_id,
+            # "product_id": new_cart.product_id,
             "id": new_cart.id
         }
         
