@@ -1,5 +1,5 @@
 from app import app
-from models import db, Product, Customer, CheckoutCart
+from models import *
 #, PurchaseHistory
 from faker import Faker
 import random
@@ -60,5 +60,10 @@ with app.app_context():
     # db.session.commit()
 
         
-    
+    #######purchase history
+
+    test1 =PurchaseHistory(product_id=1,customer_id=1)
+    db.session.add(test1)
+    db.session.commit()
+
   
