@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from models import db, Product, Customer, CheckoutCart
 from models import PurchaseHistory
+from flask import session
 # from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 
@@ -187,12 +188,8 @@ class Login(Resource):
         password = data['password']
         customer = Customer.query.filter_by(email=email).first()
         if customer:
-            if (customer.password == password):
+            if customer.password == password:
                 session['customer_id'] = customer.id
-                session_id = customer.id
-                print("custommer", session["customer_id"])
-                print("custommer", session_id)
-
                 return make_response(customer.to_dict(), 200)
         return make_response({'error': '401 Unauthorized'}, 401)
 
@@ -202,8 +199,7 @@ api.add_resource(Login, '/login')
 
 class Logout(Resource):
     def delete(self):
-        session['customer_id'] = None
-
+        session.pop('customer_id', None)
         return {'message': '204: No Content'}, 204
 
 
@@ -212,8 +208,7 @@ api.add_resource(Logout, '/logout')
 
 class CheckSession(Resource):
     def get(self):
-        customer = Customer.query.filter(
-            Customer.id == session.get('customer_id')).first()
+        customer = Customer.query.filter(Customer.id == session.get('customer_id')).first()
         if customer:
             return customer.to_dict()
         else:
@@ -330,6 +325,11 @@ api.add_resource(CheckoutCartByID, '/checkoutcartsbyid/<int:id>')
 
 # api.add_resource(DeletePurchase, '/purchase_delete')
 class PurchaseHistoryAPI(Resource):
+    def get(self):
+        purchase_history_list = [purchase_history.to_dict()
+                              for purchase_history in PurchaseHistory.query.all()]
+        return purchase_history_list
+
     def post(self):
         data = request.get_json()
         try:
