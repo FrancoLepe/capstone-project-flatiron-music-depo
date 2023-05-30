@@ -42,11 +42,28 @@ const PurchaseHistory = () => {
   const [purchaseHistoryData, setPurchaseHistoryData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5555/purchase_history') // Assuming this endpoint is correct
+    fetch('http://localhost:5555/purchase_history') 
       .then(response => response.json())
       .then(data => setPurchaseHistoryData(data))
       .catch(error => console.error(error));
   }, []);
+
+  const deletePurchaseHistory = (id) => {
+    fetch(`http://localhost:5555/purchase_history/${id}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        if (response.status === 200) {
+          // Remove the deleted item from the state
+          setPurchaseHistoryData(prevData =>
+            prevData.filter(history => history.id !== id)
+          );
+        } else {
+          console.error('Failed to delete purchase history');
+        }
+      })
+      .catch(error => console.error(error));
+  };
 
   return (
     <table className="styled-table">
@@ -54,9 +71,11 @@ const PurchaseHistory = () => {
         <tr>
           <th>ID</th>
           <th>Product ID</th>
+          <th>Customer ID</th>
           <th>Product Name</th>
           <th>Price</th>
           <th>Purchase Date</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -64,9 +83,15 @@ const PurchaseHistory = () => {
           <tr key={history.id}>
             <td>{history.id}</td>
             <td>{history.product_id}</td>
+            <td>{history.customer_id}</td>
             <td>{history.name}</td>
             <td>{history.price}</td>
             <td>{history.purchase_date}</td>
+            <td>
+              <button onClick={() => deletePurchaseHistory(history.id)}>
+                Delete History
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>
