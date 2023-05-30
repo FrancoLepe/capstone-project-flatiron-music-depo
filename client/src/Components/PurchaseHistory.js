@@ -72,6 +72,7 @@ const PurchaseHistory = () => {
           <th>ID</th>
           <th>Product ID</th>
           <th>Customer ID</th>
+          <th>Cart ID</th>
           <th>Product Name</th>
           <th>Price</th>
           <th>Purchase Date</th>
@@ -83,6 +84,7 @@ const PurchaseHistory = () => {
           <tr key={history.id}>
             <td>{history.id}</td>
             <td>{history.product_id}</td>
+            <td>{history.customer_id}</td>
             <td>{history.customer_id}</td>
             <td>{history.name}</td>
             <td>{history.price}</td>
