@@ -1,5 +1,5 @@
 import React from 'react';
-
+// import './ProductCard.css';
 
 
 
@@ -45,7 +45,7 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
         <div><b>price</b> ${product.price}</div>
         <div><button  onClick={handleAddToCart} >add to cart</button></div>
         <div><button onClick={handleRemoveFromCart} >remove item</button></div>
-        <img src={product.image} alt={product.name}/>
+        <img style={{ maxWidth: "100%", width: "auto", height: "200px" }} src={product.image} alt={product.name} />
       <br />
     </div>
 
