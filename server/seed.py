@@ -16,7 +16,7 @@ with app.app_context():
 ##### CUSTOMERS#####
     franco = Customer(firstname='Franco', lastname="Lepe", email="clearviewworldseo@gmail.com",
                       phone=4444444444, address='123 main street', password="password")
-    for i in range(5):
+    for i in range(2):
         customer = Customer(
             firstname=faker.first_name(),
             lastname=faker.last_name(),
@@ -66,13 +66,13 @@ with app.app_context():
 
 # checkoutcart
 
-    checkout_cart = CheckoutCart(product_id=1, customer_id=2)
-    db.session.add(checkout_cart)
-    db.session.commit()
+    # checkout_cart = CheckoutCart(product_id=1, customer_id=2)
+    # db.session.add(checkout_cart)
+    # db.session.commit()
 
 
 # purchase history
 
-    purchase_history = PurchaseHistory(product_id=1, customer_id=7)
-    db.session.add(purchase_history)
-    db.session.commit()
+    # purchase_history = PurchaseHistory(product_id=1, customer_id=7)
+    # db.session.add(purchase_history)
+    # db.session.commit()

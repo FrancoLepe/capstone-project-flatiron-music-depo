@@ -37,6 +37,7 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
           Total Price:
         </h2>
         <p style={{ padding: "10px", fontSize: "20px" }}>${totalPrice.toFixed(2)}</p>
+        <button>Checkout</button>
       </div>
     </div>
   );
