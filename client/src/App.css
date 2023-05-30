@@ -39,7 +39,7 @@
 
 .App.dark {
   background-color: rgba(21, 21, 21, 0.827);
-  color: white;
+  color: rgb(171, 141, 65);
 }
 
 /* .account.dark {
