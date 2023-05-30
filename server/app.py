@@ -290,16 +290,53 @@ class CheckoutCartByID(Resource):
 api.add_resource(CheckoutCartByID, '/checkoutcartsbyid/<int:id>')
 
 
+# class PurchaseHistoryAPI(Resource):
+#     def post(self):
+#         data = request.get_json()
+#         try:
+
+#             new_purchase_item = PurchaseHistory(customer_id=data['customer_id'],
+#                                                 product_id=data['product_id'])
+#             db.session.add(new_purchase_item)
+#             db.session.commit()
+
+#         except Exception as errors:
+#             print(errors)
+#             return make_response({
+#                 "errors": [errors.__str__()]
+#             }, 422)
+#         new_cart_dict = {
+#             "customer_id": new_purchase_item.customer_id,
+#             "product_id": new_purchase_item.product_id,
+#             "id": new_purchase_item.id
+#         }
+
+#         return make_response(new_purchase_item, 201)
+
+
+# api.add_resource(PurchaseHistoryAPI, '/purchase_history')
+
+
+# class DeletePurchase(Resource):
+#     def delete(self, id):
+#         customer = Customer.query.filter_by(id=id).first()
+#         if not customer:
+#             return make_response({'error': 'user not found'}, 404)
+#         db.session.delete(customer)
+#         db.session.commit()
+#         response = make_response('', 200)
+#         return response
+
+
+# api.add_resource(DeletePurchase, '/purchase_delete')
 class PurchaseHistoryAPI(Resource):
     def post(self):
         data = request.get_json()
         try:
-
             new_purchase_item = PurchaseHistory(customer_id=data['customer_id'],
                                                 product_id=data['product_id'])
             db.session.add(new_purchase_item)
             db.session.commit()
-
         except Exception as errors:
             print(errors)
             return make_response({
@@ -310,25 +347,22 @@ class PurchaseHistoryAPI(Resource):
             "product_id": new_purchase_item.product_id,
             "id": new_purchase_item.id
         }
-
         return make_response(new_purchase_item, 201)
-
-
-api.add_resource(PurchaseHistoryAPI, '/purchase_history')
 
 
 class DeletePurchase(Resource):
     def delete(self, id):
-        customer = Customer.query.filter_by(id=id).first()
-        if not customer:
-            return make_response({'error': 'user not found'}, 404)
-        db.session.delete(customer)
+        purchase_item = PurchaseHistory.query.filter_by(id=id).first()
+        if not purchase_item:
+            return make_response({'error': 'purchase item not found'}, 404)
+        db.session.delete(purchase_item)
         db.session.commit()
         response = make_response('', 200)
         return response
 
 
-api.add_resource(DeletePurchase, '/purchase_delete')
+api.add_resource(PurchaseHistoryAPI, '/purchase_history')
+api.add_resource(DeletePurchase, '/purchase_history/<int:id>')
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

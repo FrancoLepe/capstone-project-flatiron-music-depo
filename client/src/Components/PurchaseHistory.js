@@ -8,7 +8,7 @@ const PurchaseHistory = () => {
 
 
   return (
-    <table class="styled-table">
+    <table className="styled-table">
       <thead>
         <tr>
           <th>ID</th>
