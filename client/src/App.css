@@ -38,10 +38,24 @@
 }
 
 .App.dark {
-  background-color: rgba(21, 21, 21, 0.827);
+  background-color: rgba(0, 0, 0, 0.739);
   color: rgb(171, 141, 65);
 }
 
 /* .account.dark {
   /* Additional styles for the dark theme */
 
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(29, 29, 29, 0.574);
+    transition: 0.3s;
+    width: 700px;
+    /* background-color: #fdffe3; */
+    /* color: rgb(12, 12, 12); */
+  }
+
+  .container {
+    padding: 20px 500px;
+    margin-bottom: 10px;
+    
+  }

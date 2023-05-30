@@ -37,7 +37,7 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
 
   
   return(
-    <div>
+    <div className="card">
       <br />
         <div><b>Product</b>{product.name}</div>
         <div><b>Brand</b>{product.brand}/</div>
@@ -46,7 +46,9 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
         <div><button  onClick={handleAddToCart} >add to cart</button></div>
         <div><button onClick={handleRemoveFromCart} >remove item</button></div>
         <img style={{ maxWidth: "100%", width: "auto", height: "200px" }} src={product.image} alt={product.name} />
+        <div className="container">
       <br />
+     </div>
     </div>
 
   )
