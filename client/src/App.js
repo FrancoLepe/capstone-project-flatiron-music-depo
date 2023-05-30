@@ -60,13 +60,24 @@ function App() {
       });
   }, []);
 
+  // function handleLogout() {
+  //   fetch('http://127.0.0.1:5555/logout', {
+  //     method: "DELETE",
+  //     credentials: "include",
+  //   })
+  //     .then(setCurrentCustomer(''))
+  //     .then(navigate("/"))
+  // }
   function handleLogout() {
-    fetch('http://127.0.0.1:5555/logout', {
+    fetch('http://localhost:5555/logout', {
       method: "DELETE",
       credentials: "include",
     })
-      .then(setCurrentCustomer(''))
-      .then(navigate("/"))
+      .then(() => {
+        setCurrentCustomer('');
+        navigate("/");
+      })
+      .catch(error => console.log(error));
   }
 
 
