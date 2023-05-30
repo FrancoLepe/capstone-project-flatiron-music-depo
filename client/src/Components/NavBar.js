@@ -20,6 +20,9 @@ function Navbar({currentCustomer}){
 
         <ul>
             <li>
+                <Link to="/purchase-history">Purchase History</Link>
+            </li>
+            <li>
                 <Link to="/account">Account</Link>
             </li>
             <li>

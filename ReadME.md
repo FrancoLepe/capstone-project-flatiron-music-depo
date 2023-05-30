@@ -12,3 +12,4 @@ flask db init
 flask db migrate
 flask db upgrade
 python seed.py
+python app.py
