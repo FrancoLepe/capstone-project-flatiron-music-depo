@@ -10,6 +10,7 @@ import CreateAccount from './components/CreateAccount';
 import ProductList from './components/ProductList';
 import ProductCard from './components/ProductCard';
 import PurchaseHistory from './components/PurchaseHistory';
+import ThemeContext from './ThemeContext';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
   const [cartItems, setCartIems]= useState([])
   const [myCartItems, setMyCartIems]= useState([])
   const [myPurchaseHistory, setMyPurchaseHistory]= useState([])
+  const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:5555/customers')
@@ -162,8 +164,9 @@ function checkInProduct(product) {
 
 
   return (
-    <div className="App">
-      <Navbar currentCustomer={currentCustomer}/>
+    <div className={`App ${darkTheme ? 'dark' : ''}`}>
+      <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
+          <Navbar currentCustomer={currentCustomer}/>
        
        
       
@@ -178,7 +181,7 @@ function checkInProduct(product) {
                 <Route path="/purchase-history" element={<PurchaseHistory />}/>
                 
                 </Routes>
-             
+          </ThemeContext.Provider>
     </div>
   );
 }

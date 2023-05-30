@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.App.dark {
+  background-color: rgba(21, 21, 21, 0.827);
+  color: white;
+}
+
+/* .account.dark {
+  /* Additional styles for the dark theme */

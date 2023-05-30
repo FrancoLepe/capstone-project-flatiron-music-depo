@@ -1,12 +1,15 @@
-import React,  {useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
+import ThemeContext from '../ThemeContext';
 
 import * as yup from "yup";
 
 
 function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount}) {
   
+    const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+
     const navigate = useNavigate();
 
     const [email, setEmail]=useState('');
@@ -46,9 +49,15 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
   },
   });
 
-  
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
+
+
+
     return (
-        <div>
+      
+        <div className={`account ${darkTheme ? 'dark' : ''}`}>
           <h1>hello account</h1>
           <div>
                 <h2><b>Logged in as:</b></h2>
@@ -113,10 +122,11 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
               <li>
                 <br></br>
                 <br></br>
-              <button onClick={onDeleteAccount}  >Delete Account</button>
+              <button onClick={onDeleteAccount} >Delete Account</button>
               </li>
             </ul>
-          
+            <button onClick={toggleTheme}>Dark Mode</button>
+    
         </div>
   );
 }
