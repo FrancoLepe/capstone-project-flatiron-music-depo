@@ -54,7 +54,8 @@ body {
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    margin-left: 30%;
+    margin: auto;
+    margin-top: 20px;
 
 }
 
@@ -62,6 +63,7 @@ body {
     background-color: #26c555;
     color: #ffffff;
     text-align: left;
+
 }
 
 .styled-table th,

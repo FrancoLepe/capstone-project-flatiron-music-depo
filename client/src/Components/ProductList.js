@@ -17,7 +17,7 @@ function ProductList({products, currentCustomer, addToCart,checkInProduct}) {
         <div>
             <section className="mb-20">
                 <div className="container mx-auto ">
-                    <div>{productCardsArray}</div>
+                    <div className="cards">{productCardsArray}</div>
                 </div>
             </section>
         </div>
