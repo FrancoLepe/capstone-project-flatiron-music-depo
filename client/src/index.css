@@ -31,12 +31,17 @@ button {
   width: 200px;
   border-radius: 0px;
   margin-bottom: 5px;
+  transition: box-shadow 0.7s ease, background-color 0.7s ease;
 
 }
 
 button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
   background-color: rgb(37, 168, 37);
+}
+.redbutton {
+  background-color: rgb(231, 99, 99);
+  transition: box-shadow 0.7s ease, background-color 0.7s ease;
 }
 
 p {

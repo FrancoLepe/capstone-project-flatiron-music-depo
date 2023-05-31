@@ -128,7 +128,7 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
                 <br></br>
                 <br></br>
                 <br></br>
-              <button onClick={onDeleteAccount} >Delete Account</button>
+              <button className ="redbutton"onClick={onDeleteAccount} >Delete Account</button>
               </li>
             </ul>
             <br></br>
