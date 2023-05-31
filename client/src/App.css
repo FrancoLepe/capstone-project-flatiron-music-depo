@@ -50,6 +50,7 @@
     box-shadow: 0 4px 8px 0 rgba(29, 29, 29, 0.574);
     transition: 0.3s;
     width: 700px;
+    margin: 20px auto;
     /* background-color: #fdffe3; */
     /* color: rgb(12, 12, 12); */
   }
@@ -58,4 +59,13 @@
     padding: 20px 500px;
     margin-bottom: 10px;
     
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }

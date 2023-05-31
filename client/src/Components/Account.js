@@ -12,12 +12,12 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
 
     const navigate = useNavigate();
 
-    const [email, setEmail]=useState('');
-    const [password, setPassword]=  useState('');
-    const [firstname, setFirstName]=useState('');
-    const [lastname, setLastName]=  useState('');
-    const [address, setAddress]=  useState('');
-    const [phone, setPhone]=  useState('');
+    // const [email, setEmail]=useState('');
+    // const [password, setPassword]=  useState('');
+    // const [firstname, setFirstName]=useState('');
+    // const [lastname, setLastName]=  useState('');
+    // const [address, setAddress]=  useState('');
+    // const [phone, setPhone]=  useState('');
 
   const formik = useFormik({
     initialValues: {
