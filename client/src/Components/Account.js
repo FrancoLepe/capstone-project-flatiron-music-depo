@@ -72,9 +72,13 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
               <li>
               <button onClick={onLogout}>Log Out</button>
               </li>
-              <li>
+              <br>
+              </br>
+              {/* <li>
               <button >View purchase history</button>
-              </li>
+              </li> */}
+              <br>
+              </br>
               
                   <form onSubmit={formik.handleSubmit}>
 
@@ -122,9 +126,15 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
               <li>
                 <br></br>
                 <br></br>
+                <br></br>
+                <br></br>
               <button onClick={onDeleteAccount} >Delete Account</button>
               </li>
             </ul>
+            <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
             <button onClick={toggleTheme}>Dark Mode</button>
     
         </div>

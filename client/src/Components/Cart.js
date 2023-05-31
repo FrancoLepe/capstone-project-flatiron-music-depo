@@ -1,6 +1,6 @@
 
 
-
+import logo from '../images/cart-logo-transparent.png';
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 
@@ -18,7 +18,8 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
 
   return (
     <div>
-      <h1>Welcome to Your Cart</h1>
+      <img src={logo} width={70} height={70} alt='cart logo' />
+      <h1 >Welcome to Your Cart</h1>
       <ProductList
         addToCart={addToCart}
         cart={true}

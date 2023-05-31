@@ -43,8 +43,10 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
         <div><b>Brand</b>{product.brand}/</div>
         <div><b>description</b>{product.description}</div>
         <div><b>price</b> ${product.price}</div>
-        <div><button  onClick={handleAddToCart} >add to cart</button></div>
-        <div><button onClick={handleRemoveFromCart} >remove item</button></div>
+        <br></br>
+        <div><button  onClick={handleAddToCart} >Add to cart</button></div>
+        <div><button onClick={handleRemoveFromCart} >Remove item</button></div>
+        <br></br>
         <img style={{ maxWidth: "100%", width: "auto", height: "200px" }} src={product.image} alt={product.name} />
         <div className="container">
       <br />

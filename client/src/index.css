@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-button {
+/* button {
 font-size: 0.9rem;
 padding: 0.2rem;
 margin: 0.9rem;
@@ -22,9 +22,26 @@ background-color: rgb(117, 247, 117);
 width: 100px;
 cursor: pointer;
 
+} */
+
+button {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.867);
+  background-color: rgb(117, 247, 117);
+  font-size: 20px;
+  width: 200px;
+  border-radius: 0px;
+  margin-bottom: 5px;
+
 }
 
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+  
+}
 
+p {
+  font-size: 20px;
+}
 
 
 
