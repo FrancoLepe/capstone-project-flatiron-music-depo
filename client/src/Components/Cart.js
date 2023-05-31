@@ -1,5 +1,3 @@
-
-
 import logo from '../images/cart-logo-transparent.png';
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
@@ -16,10 +14,19 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
     setIsPurchased(true);
   };
 
+  useEffect(() => {
+    if (isPurchased) {
+      // Refresh the app logic here
+      window.location.reload();
+    }
+  }, [isPurchased]);
+
+  
+
   return (
     <div>
       <img src={logo} width={70} height={70} alt='cart logo' />
-      <h1 >Welcome to Your Cart</h1>
+      <h1>Welcome to Your Cart</h1>
       <ProductList
         addToCart={addToCart}
         cart={true}
@@ -59,40 +66,43 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
 
 export default Cart;
 
+
+
+
+// import logo from '../images/cart-logo-transparent.png';
 // import React, { useEffect, useState } from "react";
 // import ProductList from "./ProductList";
 
 // function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
-//   const totalPrice = myCartItems.reduce(
-//     (accumulator, item) => accumulator + item.price,
-//     0
-//   );
+//   // Calculate the total price
+//   const totalPrice = myCartItems.reduce((accumulator, item) => accumulator + item.price, 0);
 //   const [isPurchased, setIsPurchased] = useState(false);
+//   const [myCartIems,setMyCartIems]= useState([])
 
-//   const handleCheckout = async () => {
-//     try {
-//       const response = await fetch("/checkoutcartsbyid", {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(myCartItems.map((item) => item.id)),
+//   const handleCheckout = () => {
+//     fetch('http://localhost:5555/checkoutmycarts', {
+//       method: 'DELETE',
+//     })
+//       .then((response) => {
+//         if (response.ok) {
+//           // Clear the checkout cart logic here
+//           setMyCartIems([]);
+//           setIsPurchased(true);
+//         } else {
+//           // Handle error response
+//           console.log('Error deleting checkout cart');
+//         }
+//       })
+//       .catch((error) => {
+//         // Handle fetch error
+//         console.log('Error deleting checkout cart:', error);
 //       });
-
-//       if (response.ok) {
-//         setIsPurchased(true);
-//       } else {
-//         // Handle the error if the request fails
-//         console.error("Failed to clear checkout cart");
-//       }
-//     } catch (error) {
-//       console.error("Failed to clear checkout cart:", error);
-//     }
 //   };
 
 //   return (
 //     <div>
-//       <h1>Welcome to Your Cart</h1>
+//       <img src={logo} width={70} height={70} alt='cart logo' />
+//       <h1 >Welcome to Your Cart</h1>
 //       <ProductList
 //         addToCart={addToCart}
 //         cart={true}
@@ -105,7 +115,7 @@ export default Cart;
 //           display: "flex",
 //           justifyContent: "center",
 //           alignItems: "center",
-//           marginTop: "20px",
+//           marginTop: "20px"
 //         }}
 //       >
 //         <h2
@@ -115,17 +125,17 @@ export default Cart;
 //             fontWeight: "bold",
 //             letterSpacing: "-1px",
 //             lineHeight: "1",
-//             textAlign: "center",
+//             textAlign: "center"
 //           }}
 //         >
 //           Total Price:
 //         </h2>
-//         <p style={{ padding: "10px", fontSize: "20px" }}>
-//           ${totalPrice.toFixed(2)}
-//         </p>
+//         <p style={{ padding: "10px", fontSize: "20px" }}>${totalPrice.toFixed(2)}</p>
 //         <button onClick={handleCheckout}>Checkout</button>
 //       </div>
-//       {isPurchased && <h1>Thank you for your purchase!</h1>}
+//       {isPurchased && (
+//         <h1>Thank you for your purchase!</h1>
+//       )}
 //     </div>
 //   );
 // }

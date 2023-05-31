@@ -51,6 +51,9 @@ with app.app_context():
                        image='https://m.kitmonsters.com/05127-0470-u87ai.large.jpg')
     product10 = Product(name='American Professional II Precision Bass', brand='Fender', price=1749.00, description='3-color Sunburst with Rosewood Fingerboard',
                         image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Yl6dK-EQi4prcmAfXhoU6acnb3joU5UWSg&usqp=CAU')
+    product11 = Product(name='American Professional II Precision Bass', brand='Fender', price=1749.00, description='3-color Sunburst with Rosewood Fingerboard',
+                        image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Yl6dK-EQi4prcmAfXhoU6acnb3joU5UWSg&usqp=CAU')
+    
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)
@@ -61,6 +64,7 @@ with app.app_context():
     db.session.add(product8)
     db.session.add(product9)
     db.session.add(product10)
+    db.session.add(product11)
     db.session.commit()
 
 # checkoutcart

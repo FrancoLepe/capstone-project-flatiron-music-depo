@@ -52,6 +52,7 @@ const PurchaseHistory = () => {
             <td>{history.name}</td>
             <td>{history.price}</td>
             <td>{history.purchase_date}</td>
+           
             <td>
               <button onClick={() => deletePurchaseHistory(history.id)}>
                 Delete History
