@@ -39,15 +39,15 @@ function ProductCard({product, addToCart, currentCustomer, checkInProduct }) {
   return(
     <div className="card">
       <br />
-        <div><b>Product</b>{product.name}</div>
-        <div><b>Brand</b>{product.brand}/</div>
-        <div><b>description</b>{product.description}</div>
-        <div><b>price</b> ${product.price}</div>
+        <div><b>Product </b>{product.name}</div>
+        <div><b>Brand </b>{product.brand}/</div>
+        <div><b>Description </b>{product.description}</div>
+        <div><b>Price </b> ${product.price}</div>
         <br></br>
         <div><button  onClick={handleAddToCart} >Add to cart</button></div>
         <div><button onClick={handleRemoveFromCart} >Remove item</button></div>
         <br></br>
-        <img style={{ maxWidth: "100%", width: "auto", height: "200px" }} src={product.image} alt={product.name} />
+        <img style={{ maxWidth: "100%", width: "auto", height: "180px" }} src={product.image} alt={product.name} />
         <div className="container">
       <br />
      </div>

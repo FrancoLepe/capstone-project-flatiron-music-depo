@@ -37,8 +37,8 @@ const PurchaseHistory = () => {
           <th>Product ID</th>
           <th>Customer ID</th>
           
-          <th>Product Name</th>
-          <th>Price</th>
+          {/* <th>Product Name</th>
+          <th>Price</th> */}
           <th>Purchase Date</th>
           <th></th>
         </tr>
@@ -49,8 +49,8 @@ const PurchaseHistory = () => {
             {/* <td>{history.id}</td> */}
             <td>{history.product_id}</td>
             <td>{history.customer_id}</td>
-            <td>{history.name}</td>
-            <td>{history.price}</td>
+            {/* <td>{history.name}</td>
+            <td>{history.price}</td> */}
             <td>{history.purchase_date}</td>
            
             <td>

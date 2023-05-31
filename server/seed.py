@@ -51,9 +51,27 @@ with app.app_context():
                        image='https://m.kitmonsters.com/05127-0470-u87ai.large.jpg')
     product10 = Product(name='American Professional II Precision Bass', brand='Fender', price=1749.00, description='3-color Sunburst with Rosewood Fingerboard',
                         image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Yl6dK-EQi4prcmAfXhoU6acnb3joU5UWSg&usqp=CAU')
-    product11 = Product(name='American Professional II Precision Bass', brand='Fender', price=1749.00, description='3-color Sunburst with Rosewood Fingerboard',
-                        image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Yl6dK-EQi4prcmAfXhoU6acnb3joU5UWSg&usqp=CAU')
-    
+    product11 = Product(name='210e Deluxe Dreadnought', brand='Taylor', price=1499.00, description='Deluxe Dreadnought Acoustic-Electric Guitar Tobacco Sunburst',
+                        image='https://cdn.shopify.com/s/files/1/0265/6190/4699/products/2106049554-1_1200x.jpg?v=1595221023')
+    product12 = Product(name='Instrument Cable', brand="Musician's Gear", price=16.99, description='Instrument Cable Black Braid 20 ft. Black',
+                        image='https://spectraflex.com/cdn/shop/products/shopify_BCxQ-Q_1024x1024.jpg?v=1361721145')
+    product13 = Product(name='Player Plus Jazz Bass V', brand='Fender', price=1249.99, description='Maple Fingerboard Opal Spark',
+                        image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsyUklDZYoFtFjGubN5qNtOCqlWW6DNqIHOg&usqp=CAU')
+    product14 = Product(name='Cymbal Pack', brand='MEINL HCS ', price=1499.00, description='Cymbal Pack With Free Splash and Sticks',
+                        image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV8C_bjMX8stc3RBlUd8LAU-Sqeur-Jk000g&usqp=CAU')
+    product15 = Product(name='DJ DDJ-FLX10 4-Channel', brand='Pioneer', price=1599.00, description='Performance DJ Controller for Rekordbox DJ and Serato DJ Pro Black',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/M00278000000001-00-600x600.jpg')
+    product16 = Product(name='Digital Piano Black 88 Key', brand='Williams Allegro', price=299.99, description='88 weighted-key digital piano with superior sounds and breakthrough features',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/L34771000001001-00-600x600.jpg')
+    product17 = Product(name='Scarlett 4i4', brand='Focusrite', price=259.99, description='Scarlett 4i4 is the perfect interface for musicians and producers',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/L56576000000000-00-600x600.jpg')
+    product18 = Product(name='Jimmie Morales Signature Series Congas', brand='Toca', price=514.49, description='11 in. Purple Sparkle',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/L56867000001001-00-600x600.jpg')
+    product19 = Product(name='Regular Slinky GuitarStrings', brand='Ernie Ball', price=6.99, description='2221 (10-46) Nickel Wound Electric Guitar Strings',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/100622000000000-00-600x600.jpg')
+    product20 = Product(name='TOD10N Tim Henson Signature', brand='Ibanez', price=699.99, description='Nylon Acoustic-Electric Guitar Black Flat',
+                        image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxf0Fk-gwJQyKgm_OORy2w4hBB6KQDiD8iag&usqp=CAU')
+
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)
@@ -65,6 +83,15 @@ with app.app_context():
     db.session.add(product9)
     db.session.add(product10)
     db.session.add(product11)
+    db.session.add(product12)
+    db.session.add(product13)
+    db.session.add(product14)
+    db.session.add(product15)
+    db.session.add(product16)
+    db.session.add(product17)
+    db.session.add(product18)
+    db.session.add(product19)
+    db.session.add(product20)
     db.session.commit()
 
 # checkoutcart
