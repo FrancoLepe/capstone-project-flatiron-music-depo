@@ -33,7 +33,7 @@ const PurchaseHistory = () => {
     <table className="styled-table">
       <thead>
         <tr>
-          <th>ID</th>
+          {/* <th>ID</th> */}
           <th>Product ID</th>
           <th>Customer ID</th>
           
@@ -46,7 +46,7 @@ const PurchaseHistory = () => {
       <tbody>
         {purchaseHistoryData.map(history => (
           <tr key={history.id}>
-            <td>{history.id}</td>
+            {/* <td>{history.id}</td> */}
             <td>{history.product_id}</td>
             <td>{history.customer_id}</td>
             <td>{history.name}</td>

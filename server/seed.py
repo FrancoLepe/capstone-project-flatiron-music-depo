@@ -1,6 +1,5 @@
 from app import app
 from models import db, Product, Customer, CheckoutCart, PurchaseHistory
-# , PurchaseHistory
 from faker import Faker
 import random
 
