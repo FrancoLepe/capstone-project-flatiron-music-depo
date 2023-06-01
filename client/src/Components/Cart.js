@@ -13,7 +13,7 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
     if (isPurchased) {
       playClickSound(); // Play the click sound
       setTimeout(() => {
-        window.location.reload(); // Refresh the page after a delay
+        window.location.reload()
       }, 300);
     }
   }, [isPurchased]);
@@ -23,7 +23,7 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
   };
 
   function playClickSound() {
-    audioRef.current.currentTime = 0; // Reset the audio to the beginning
+    audioRef.current.currentTime = 0
     audioRef.current.play();
   }
 
