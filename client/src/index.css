@@ -39,9 +39,30 @@ button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
   background-color: rgb(37, 168, 37);
 }
+
+
+
+
 .redbutton {
   background-color: rgb(231, 99, 99);
   transition: box-shadow 0.7s ease, background-color 0.7s ease;
+}
+.redbutton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+  background-color: rgb(255, 17, 17);
+  
+}
+
+
+
+
+.darkbutton{
+  background-color: rgb(62, 62, 62);
+  color: rgb(255, 242, 57);
+
+}
+.darkbutton:hover{
+  background-color: rgb(0, 0, 0);
 }
 
 p {
