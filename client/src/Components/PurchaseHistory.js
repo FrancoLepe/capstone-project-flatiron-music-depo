@@ -34,7 +34,7 @@ const PurchaseHistory = () => {
       <thead>
         <tr>
           {/* <th>ID</th> */}
-          <th>Product ID</th>
+          <th>Product </th>
           <th>Customer ID</th>
           
           {/* <th>Product Name</th>
