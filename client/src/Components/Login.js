@@ -72,6 +72,7 @@ function Login({handleLogin}){
     return ( 
         <>
             <form className="form-container" onSubmit={handleLoginSubmit}>
+                <br></br>
                 <label htmlFor ="email">Email</label>
                 <input value={email} onChange={handleEmail} type = "email" placeholder="email" id ="email" name="email"></input>
                 <label htmlFor ="password">Password</label>

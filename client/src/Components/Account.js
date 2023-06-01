@@ -81,7 +81,7 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
               </br>
               
                   <form className="form-container" onSubmit={formik.handleSubmit}>
-
+                    <br></br>
                       <label htmlFor ="firstname">First Name</label>
                       <input onChange={formik.handleChange} value={formik.values.firstname}type = "text" placeholder="first name" id ="firstname" name="firstname"></input>
                       {formik.touched.firstname && formik.errors.firstname ? (

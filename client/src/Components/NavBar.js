@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../images/transparent-guitar-depo-logo copy-2.png';
 import { useNavigate } from "react-router-dom";
+import logo2 from '../images/cart-logo-transparent.png'
+
 
 function Navbar({currentCustomer}) {
     const navigate = useNavigate();
@@ -34,7 +36,9 @@ function Navbar({currentCustomer}) {
 
             <ul>
                 <li>
-                    <Link to="/cart">Cart</Link>
+                    <Link to="/cart">
+                        <img src={logo2} width={40} height={40} alt='cart logo'/>
+                    </Link>
                 </li>
                 <li>
                     <Link to="/purchase-history">Purchase History</Link>

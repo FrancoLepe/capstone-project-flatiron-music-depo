@@ -25,8 +25,10 @@ function Cart({ addToCart, currentCustomer, myCartItems, checkInProduct }) {
 
   return (
     <div>
+      <br></br>
+      <br></br>
       <img src={logo} width={70} height={70} alt='cart logo' />
-      <h1>Welcome to Your Cart</h1>
+      <h1>Welcome to Your Shopping Cart</h1>
       <ProductList
         addToCart={addToCart}
         cart={true}

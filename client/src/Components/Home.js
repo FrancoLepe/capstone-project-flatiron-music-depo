@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../images/transparent-guitar-depo-logo copy-2.png';
+import logoDark from '../images/music-depo-dark-logo-transparent.png'
 import ProductList from './ProductList';
 
 function Home({products, currentCustomer, addToCart, checkInProduct}) {

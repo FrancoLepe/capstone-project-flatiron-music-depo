@@ -1,3 +1,7 @@
+welcome to music depo where you can create a customer and add items to cart 
+
+
+
 npx create-react-app guitar-store
 -Installing packages. This might take a couple of minutes.
 -Installing react, react-dom, and react-scripts with cra-template
