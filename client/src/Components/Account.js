@@ -141,6 +141,8 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
                 <br></br>
                 <h3>Eyes hurt? Try dark mode</h3>
             <button onClick={toggleTheme}>Dark Mode</button>
+            <br></br>
+            <br></br>
     
         </div>
   );
