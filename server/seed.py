@@ -71,6 +71,14 @@ with app.app_context():
                         image='https://media.guitarcenter.com/is/image/MMGS7/100622000000000-00-600x600.jpg')
     product20 = Product(name='TOD10N Tim Henson Signature', brand='Ibanez', price=699.99, description='Nylon Acoustic-Electric Guitar Black Flat',
                         image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxf0Fk-gwJQyKgm_OORy2w4hBB6KQDiD8iag&usqp=CAU')
+    product21 = Product(name='Bronze Acoustic Guitar Strings', brand='Elixir', price=17.99, description= 'Bronze Acoustic Guitar Strings With NANOWEB Coating',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/101571000000000-00-600x600.jpg')
+    product22 = Product(name='Red Rose Jacquard Strap', brand='Ernie Ball', price=19.99, description= 'Nylon Guitar Strap',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/L76749000000000-00-600x600.jpg')
+    product23 = Product(name='8050B 8"', brand='Genelec', price=19.99, description= ' 8" Powered Studio Monitor ',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/H98193000000000-00-600x600.jpg')
+    product24 = Product(name='Slash Cry Bab Wah SW95', brand='Dunlop', price=199.99, description= 'high-gain circuit for a different and distinct sound.  ',
+                        image='https://media.guitarcenter.com/is/image/MMGS7/151023000000000-00-600x600.jpg')
 
     db.session.add(product1)
     db.session.add(product2)
@@ -92,6 +100,10 @@ with app.app_context():
     db.session.add(product18)
     db.session.add(product19)
     db.session.add(product20)
+    db.session.add(product21)
+    db.session.add(product22)
+    db.session.add(product23)
+    db.session.add(product24)
     db.session.commit()
 
 # checkoutcart
