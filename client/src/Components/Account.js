@@ -58,7 +58,7 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
     return (
       
         <div className={`account ${darkTheme ? 'dark' : ''}`}>
-          <h1>hello account</h1>
+          
           <div>
                 <h2><b>Logged in as:</b></h2>
             </div>
@@ -80,7 +80,7 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
               <br>
               </br>
               
-                  <form onSubmit={formik.handleSubmit}>
+                  <form className="form-container" onSubmit={formik.handleSubmit}>
 
                       <label htmlFor ="firstname">First Name</label>
                       <input onChange={formik.handleChange} value={formik.values.firstname}type = "text" placeholder="first name" id ="firstname" name="firstname"></input>
@@ -117,8 +117,12 @@ function Account({currentCustomer, setCurrentCustomer, onLogout, onDeleteAccount
                       {formik.touched.password && formik.errors.password ? (
                               <div>{formik.errors.password}</div>
                           ) : null}
-
+                        <br></br>
+                        <br></br>
                           <button type='submit'>Update information</button>
+                          <br></br>
+                          <br></br>
+                          
 
                       
                   </form>

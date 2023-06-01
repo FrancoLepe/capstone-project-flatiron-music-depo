@@ -52,7 +52,7 @@ function CreateAccount({currentCustomer, setCurrentCustomer}){
 
     return ( 
         <>
-            <form onSubmit={formik.handleSubmit}>
+            <form className="form-container" onSubmit={formik.handleSubmit}>
 
                 <label htmlFor ="firstname">First Name</label>
                 <input onChange={formik.handleChange} value={formik.values.firstname}type = "text" placeholder="first name" id ="firstname" name="firstname"></input>
@@ -89,11 +89,14 @@ function CreateAccount({currentCustomer, setCurrentCustomer}){
                 {formik.touched.password && formik.errors.password ? (
                         <div>{formik.errors.password}</div>
                     ) : null}
-               
+                <br></br>
                 <button type="submit">Create Account</button>
-          
+                <br></br>
+                <br></br>
                 <div>  
                 Already have an Account?<a href="/login" >Log in here</a>
+                <br></br>
+                <br></br>
                 </div>
             </form>
             
